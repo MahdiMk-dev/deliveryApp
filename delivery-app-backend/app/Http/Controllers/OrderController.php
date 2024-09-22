@@ -14,7 +14,10 @@ class OrderController extends Controller
     {
         $orders = Order::with(['client', 'shop', 'driver'])->get();
 
-        return response()->json($orders);
+        return response()->json([
+            'status' => 'success',
+            'orders' => $orders
+        ]);
     }
 
     // 2. View one order
@@ -29,8 +32,10 @@ class OrderController extends Controller
             ], 404);
         }
 
-        return response()->json($order);
-    }
+        return response()->json([
+            'status' => 'success',
+            'orders' => $order
+        ]);    }
 
     // 3. Add a new order
     public function store(Request $request)
